@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzx.springbootdemo.dao.BlogUserMapper">
+    <resultMap type="com.xzx.springbootdemo.entity.BlogUser" id="BlogUserResult">
+        <result property="userId" column="user_id"/>
+        <result property="userName" column="user_name"/>
+        <result property="password" column="user_password"/>
+        <result property="cellNum" column="user_phone_number"/>
+        <result property="emailAddr" column="user_email"/>
+    </resultMap>
+    <select id="queryAllUsers" resultMap="BlogUserResult">
+        select * from tb_user order by user_id desc
+    </select>
+    <select id="queryUserById" resultMap="BlogUserResult" parameterType="int">
+        select * from tb_user where user_id=#{userId}
+    </select>
+    <insert id="addUser" parameterType="com.xzx.springbootdemo.entity.BlogUser">
+        insert into tb_user(user_name, user_password, user_phone_number, user_email) values(#{userName}, #{password}, #{cellNum}, #{emailAddr})
+    </insert>
+    <update id="updateUser" parameterType="com.xzx.springbootdemo.entity.BlogUser">
+        update tb_user set user_name=#{userName},user_password=#{password},user_phone_number=#{cellNum},user_email=#{emailAddr} where user_id=#{userId}
+    </update>
+    <delete id="deleteUserById" parameterType="int">
+        delete from tb_user where user_id=#{userId}
+    </delete>
+</mapper>

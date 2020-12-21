@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import { Button, DatePicker, version } from "antd";
 import './App.css'
 
 class App extends Component {
@@ -66,6 +67,13 @@ class App extends Component {
                                 </div>
                             </div>
                         </form>
+                    </div>
+                    <div className="App">
+                        <h1>antd version: {version}</h1>
+                        <DatePicker />
+                        <Button type="primary" style={{ marginLeft: 8 }}>
+                            Primary Button
+                        </Button>
                     </div>
                 </div>
             </div>
