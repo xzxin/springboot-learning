@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzx.springbootdemo.dao.BlogMetaMapper">
+    <resultMap type="com.xzx.springbootdemo.entity.BlogMeta" id="BlogMetaResult">
+        <result property="blogId" column="blog_id"/>
+        <result property="blogName" column="blog_name"/>
+        <result property="blogAuthorId" column="blog_author_id"/>
+        <result property="blogCreateDate" column="blog_create_date"/>
+        <result property="blogLastModifyDate" column="blog_last_modify_date"/>
+    </resultMap>
+    <select id="queryAllBlogs" resultMap="BlogMetaResult">
+        select * from tb_blog_meta order by blog_id desc
+    </select>
+    <select id="queryBlogMetaByAuthorId" resultMap="BlogMetaResult" parameterType="int">
+        select * from tb_blog_meta where blog_author_id=#{blogAuthorId}
+    </select>
+    <select id="queryBlogMetaById" resultMap="BlogMetaResult" parameterType="int">
+        select * from tb_blog_meta where blog_id=#{blogId}
+    </select>
+    <insert id="createBlog" parameterType="com.xzx.springbootdemo.entity.BlogMeta">
+        insert into tb_blog_meta(blog_id, blog_name, blog_author_id, blog_create_date, blog_last_modify_date) values(#{blogId}, #{blogName}, #{blogAuthorId}, #{blogCreateDate}, #{blogLastModifyDate})
+    </insert>
+    <update id="updateBlogMeta" parameterType="com.xzx.springbootdemo.entity.BlogMeta">
+        update tb_blog_meta set blog_name=#{blogName},blog_author_id=#{blogAuthorId},blog_create_date=#{blogCreateDate},blog_last_modify_date=#{blogLastModifyDate} where blog_id=#{blogId}
+    </update>
+    <delete id="deleteBlog" parameterType="int">
+        delete from tb_blog_meta where blog_id=#{blogId}
+    </delete>
+</mapper>
