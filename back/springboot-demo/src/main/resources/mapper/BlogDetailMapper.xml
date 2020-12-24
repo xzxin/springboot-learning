@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzx.springbootdemo.dao.BlogDetailMapper">
+    <resultMap type="com.xzx.springbootdemo.entity.BlogDetail" id="BlogDetailResult">
+        <result property="blogId" column="blog_id"/>
+        <result property="blogComments" column="blog_comments"/>
+        <result property="thumbsUp" column="blog_thumbs_up"/>
+    </resultMap>
+    <select id="getBlogThumbsUp" parameterType="int" resultType="int">
+        select blog_thumbs_up from tb_blog_detail where blog_id=#{blogId}
+    </select>
+    <update id="setBlogThumbsUp" parameterType="int">
+        update tb_blog_detail set blog_thumbs_up=#{thumbsUp} where blog_id=#{blogId}
+    </update>
+    <update id="setBlogComments">
+        update tb_blog_detail set blog_comments=#{blogComments} where blog_id=#{blogId}
+    </update>
+</mapper>
