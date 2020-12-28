@@ -36,11 +36,12 @@ public class BlogUserController {
 
     @PostMapping("/blogUser/addUser")
     @ResponseBody
-    public Result addUser(@RequestBody BlogUser user) {
-        Result result = new Result<>();
+    public Result<BlogUser> addUser(@RequestBody BlogUser user) {
+        Result<BlogUser> result = new Result<>();
         if (blogUserService.addUser(user) > 0) {
             result.setResultCode(0);
             result.setMessage("Add user suceessfully. User id is " + user.getUserId());
+            result.setData(user);
         } else {
             result.setResultCode(-1);
             result.setMessage("Add user failed");

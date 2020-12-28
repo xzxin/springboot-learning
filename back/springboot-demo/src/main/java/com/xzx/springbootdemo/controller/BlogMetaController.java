@@ -63,15 +63,16 @@ public class BlogMetaController {
 
     @PostMapping("/blogMeta/createBlog")
     @ResponseBody
-    public Result createBlog(@RequestBody BlogMeta blogMeta) {
-        Result result = new Result();
+    public Result<BlogMeta> createBlog(@RequestBody BlogMeta blogMeta) {
+        Result<BlogMeta> result = new Result<>();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         blogMeta.setBlogCreateDate(df.format(new Date()));
         blogMeta.setBlogLastModifyDate(df.format(new Date()));
         if (blogMetaService.createBlog(blogMeta) > 0) {
             blogDetailService.createBlogDetailItem(blogMeta.getBlogId());
             result.setResultCode(0);
-            result.setMessage("Create successfully");
+            result.setMessage("Create blog successfully. BlogId is " + blogMeta.getBlogId());
+            result.setData(blogMeta);
         } else {
             result.setResultCode(-1);
             result.setMessage("Create blog failed");
