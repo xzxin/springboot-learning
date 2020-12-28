@@ -38,4 +38,9 @@ public class BlogUserServiceImpl implements BlogUserService {
     public int deleteUserById(Integer id) {
         return blogUserMapper.deleteUserById(id);
     }
+
+    @Override
+    public void deleteAllBlogUser() {
+        blogUserMapper.deleteAllBlogUsers();
+    }
 }

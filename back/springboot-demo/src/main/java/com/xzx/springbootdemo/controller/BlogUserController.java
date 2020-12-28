@@ -40,7 +40,7 @@ public class BlogUserController {
         Result result = new Result<>();
         if (blogUserService.addUser(user) > 0) {
             result.setResultCode(0);
-            result.setMessage("Add user suceessfully");
+            result.setMessage("Add user suceessfully. User id is " + user.getUserId());
         } else {
             result.setResultCode(-1);
             result.setMessage("Add user failed");
@@ -73,6 +73,15 @@ public class BlogUserController {
             result.setResultCode(-1);
             result.setMessage("Delete user failed");
         }
+        return result;
+    }
+
+    @DeleteMapping("/blogUser/all")
+    @ResponseBody
+    public Result<Boolean> deleteAllBlogDetail() {
+        blogUserService.deleteAllBlogUser();
+        Result<Boolean> result = new Result<>();
+        result.setMessage("Delete all blog users successfully");
         return result;
     }
 }

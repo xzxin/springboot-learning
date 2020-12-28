@@ -2,6 +2,7 @@ package com.xzx.springbootdemo.controller;
 
 import com.xzx.springbootdemo.common.Result;
 import com.xzx.springbootdemo.entity.BlogMeta;
+import com.xzx.springbootdemo.service.BlogDetailService;
 import com.xzx.springbootdemo.service.BlogMetaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,8 @@ import java.util.List;
 public class BlogMetaController {
     @Autowired
     BlogMetaService blogMetaService;
+    @Autowired
+    BlogDetailService blogDetailService;
 
     @GetMapping("/blogMeta/queryAll")
     @ResponseBody
@@ -66,6 +69,7 @@ public class BlogMetaController {
         blogMeta.setBlogCreateDate(df.format(new Date()));
         blogMeta.setBlogLastModifyDate(df.format(new Date()));
         if (blogMetaService.createBlog(blogMeta) > 0) {
+            blogDetailService.createBlogDetailItem(blogMeta.getBlogId());
             result.setResultCode(0);
             result.setMessage("Create successfully");
         } else {
@@ -108,6 +112,16 @@ public class BlogMetaController {
             result.setResultCode(-1);
             result.setMessage("Delete blog failed");
         }
+        return result;
+    }
+
+    @DeleteMapping("/blogMeta/all")
+    @ResponseBody
+    public Result<Boolean> deleteAllBlogDetail() {
+        blogDetailService.deleteAllBlogDetail();
+        blogMetaService.deleteAllBlogMeta();
+        Result<Boolean> result = new Result<>();
+        result.setMessage("Delete all blog detail items successfully");
         return result;
     }
 }

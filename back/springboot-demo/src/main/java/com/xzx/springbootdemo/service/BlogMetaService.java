@@ -11,4 +11,5 @@ public interface BlogMetaService {
     BlogMeta queryBlogMetaById(Integer blogId);
     List<BlogMeta> queryBlogMetaByAuthorId(Integer userId);
     List<BlogMeta> queryAllBlogs();
+    void deleteAllBlogMeta();
 }

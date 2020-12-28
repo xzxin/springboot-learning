@@ -14,4 +14,6 @@ public interface BlogUserService {
     int addUser(BlogUser user);
 
     int deleteUserById(Integer id);
+
+    void deleteAllBlogUser();
 }

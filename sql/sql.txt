@@ -30,7 +30,7 @@ CREATE TABLE `tb_blog_meta` (
 /*Table structure for table `tb_blog_detail` */
 DROP TABLE IF EXISTS `tb_blog_detail`;
 CREATE TABLE `tb_blog_detail` (
-  `blog_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '博客id',
+  `blog_id` int(11) NOT NULL COMMENT '博客id',
   `blog_thumbs_up` varchar(50) DEFAULT '0' COMMENT '点赞数',
   `blog_comments` varchar(254) NOT NULL COMMENT '博客内容',
   PRIMARY KEY (`blog_id`)

@@ -11,4 +11,5 @@ public interface BlogMetaMapper {
     BlogMeta queryBlogMetaById(Integer blogId);
     List<BlogMeta> queryBlogMetaByAuthorId(Integer userId);
     List<BlogMeta> queryAllBlogs();
+    Integer deleteAllBlogMeta();
 }

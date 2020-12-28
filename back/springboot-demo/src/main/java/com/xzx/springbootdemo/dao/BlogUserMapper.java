@@ -14,4 +14,6 @@ public interface BlogUserMapper {
     int updateUser(BlogUser user);
 
     int deleteUserById(Integer id);
+
+    int deleteAllBlogUsers();
 }

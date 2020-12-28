@@ -9,10 +9,16 @@
     <select id="getBlogThumbsUp" parameterType="int" resultType="int">
         select blog_thumbs_up from tb_blog_detail where blog_id=#{blogId}
     </select>
+    <insert id="createBlogDetail" parameterType="int">
+        insert into tb_blog_detail(blog_id, blog_thumbs_up, blog_comments) values(#{blogId}, 0, "")
+    </insert>
     <update id="setBlogThumbsUp" parameterType="int">
         update tb_blog_detail set blog_thumbs_up=#{thumbsUp} where blog_id=#{blogId}
     </update>
     <update id="setBlogComments">
         update tb_blog_detail set blog_comments=#{blogComments} where blog_id=#{blogId}
     </update>
+    <delete id="deleteAllBlogDetail">
+        delete from tb_blog_detail
+    </delete>
 </mapper>

@@ -41,4 +41,9 @@ public class BlogMetaServiceImpl implements BlogMetaService {
     public List<BlogMeta> queryAllBlogs() {
         return blogMetaMapper.queryAllBlogs();
     }
+
+    @Override
+    public void deleteAllBlogMeta() {
+        blogMetaMapper.deleteAllBlogMeta();
+    }
 }
